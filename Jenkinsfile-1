@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    environment {
+        PROJECT_NAME = "My Project"
+        PROJECT_AUTHOR = "Alexander Zamaschikov"
+    }
+
+    stages {
+        stage('Building step') {
+            steps {
+                echo 'Start of Stage Build'
+                echo 'Building ...'
+                echo 'End of Stage Build'
+            }
+        }
+        
+        stage('Testing step') {
+            steps {
+                echo 'Start of Stage Test'
+                sh    'python --version'
+                echo 'End of Stage Test'
+            }
+        }
+        
+        stage('Deploying step') {
+            steps {
+                echo 'Start of Stage Deploy'
+                echo 'Deploying ...'
+                echo 'End of Stage Deploy'
+            }
+        } 
+    }
+}
