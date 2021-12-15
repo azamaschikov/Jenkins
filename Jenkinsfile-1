@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PROJECT_NAME = "My Project"
+        PROJECT_NAME = "My Template For Pipelines"
         PROJECT_AUTHOR = "Aleksandr Zamaschikov"
     }
 
