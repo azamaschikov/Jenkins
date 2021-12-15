@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         PROJECT_NAME = "My Project"
-        PROJECT_AUTHOR = "Alexander Zamaschikov"
+        PROJECT_AUTHOR = "Aleksandr Zamaschikov"
     }
 
     stages {
