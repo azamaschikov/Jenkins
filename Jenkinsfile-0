@@ -1,10 +1,20 @@
 pipeline {
+
     agent any
 
+    options {
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        PROJECT_NAME   = "My Template For Pipelines"
+        PROJECT_AUTHOR = "Aleksandr Zamaschikov"
+    }
+
     stages {
-        stage('Hello') {
+        stage("Greetings") {
             steps {
-                echo 'Hello World'
+                echo "Hello, World"
             }
         }
     }
