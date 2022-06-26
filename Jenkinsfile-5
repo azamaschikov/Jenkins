@@ -20,12 +20,13 @@ pipeline {
     }
 
     parameters {
-        string(name: "C",  defaultValue: "", description: "Country")
-        string(name: "ST", defaultValue: "", description: "State")
-        string(name: "L",  defaultValue: "", description: "Locality")
-        string(name: "O",  defaultValue: "", description: "Organization Name")
-        string(name: "OU", defaultValue: "", description: "Organizational Unit")
-        string(name: "CN", defaultValue: "", description: "Common Name")
+        string(name: "C",   defaultValue: "", description: "Country")
+        string(name: "ST",  defaultValue: "", description: "State")
+        string(name: "L",   defaultValue: "", description: "Locality")
+        string(name: "O",   defaultValue: "", description: "Organization Name")
+        string(name: "OU",  defaultValue: "", description: "Organizational Unit")
+        string(name: "CN",  defaultValue: "", description: "Common Name")
+        string(name: "ALT", defaultValue: "", description: "Alternative Names")
     }
 
     stages {
@@ -43,7 +44,8 @@ pipeline {
 
         stage("Generate Configuration File") {
             steps {
-                writeFile(file: "${env.WORKDIR}/${params.CN}.cnf", encoding: "UTF-8", text: """[req]
+                writeFile(file: "${env.WORKDIR}/${params.CN}.cnf", encoding: "UTF-8", text: """
+                    [req]
                     distinguished_name = req_distinguished_name
                     req_extensions = v3_req
                     prompt = no
@@ -63,7 +65,7 @@ pipeline {
 
                     [alt_names]"""
                 )
-                sh "ls -l ."
+
                 sh "cat ${env.WORKDIR}/${params.CN}.cnf"
             }
         }
