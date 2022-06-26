@@ -27,7 +27,8 @@ pipeline {
     stages {
         stage("Get Page") {
             steps {
-                httpRequest ignoreSslErrors: true, url: "${params.URL}", wrapAsMultipart: false
+                def response = httpRequest ignoreSslErrors: true, url: "${params.URL}", wrapAsMultipart: false
+                echo ${response.code}
             }
         }
     }
