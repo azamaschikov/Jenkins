@@ -81,7 +81,7 @@ pipeline {
 
         stage("Generate CSR") {
             steps {
-                sh "openssl req -config ${params.CN}.cnf -new  -key ${params.CN}.key -out ${params.CN}.csr"
+                sh "openssl req -config ${params.CN}.cnf -new -key ${params.CN}.key -out ${params.CN}.csr"
                 sh "ls -l ."
             }
         }
