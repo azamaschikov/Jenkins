@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     def response = httpRequest ignoreSslErrors: true, url: "${params.URL}", wrapAsMultipart: false
-                    echo response.code
+                    echo ${response.code}
                 }
             }
         }
