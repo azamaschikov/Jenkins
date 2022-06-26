@@ -70,7 +70,7 @@ pipeline {
                     INC=1
                     for I in \$(echo \$ALT | tr " " "\n")
                         do
-                            let INC++
+                            INC=\$(expr \$INC + 1)
                             echo \$I
                             echo \$INC
                         done
