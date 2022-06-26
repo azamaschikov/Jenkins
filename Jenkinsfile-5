@@ -74,6 +74,8 @@ pipeline {
                         INC=$(expr $INC + 1)
                         echo "DNS.$INC = $I" >> $WORKDIR/$CN.cnf
                     done
+
+                    cat $WORKDIR/$CN.cnf
                 '''
             }
         }
