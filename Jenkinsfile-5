@@ -71,7 +71,7 @@ pipeline {
                     INC=0
                     for I in $(echo $ALT | tr " " "\n"); do
                         INC=$(expr $INC + 1)
-                        echo "DNS.\$INC = $I" >> $WORKDIR/$CN.cnf
+                        echo "DNS.$INC = $I" >> $WORKDIR/$CN.cnf
                     done
                 '''
             }
