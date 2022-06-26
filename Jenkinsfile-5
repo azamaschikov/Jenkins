@@ -67,7 +67,7 @@ pipeline {
                 )
 
                 sh """
-                    INC=1
+                    INC=0
                     for I in \$(echo \$ALT | tr " " "\n")
                         do
                             INC=\$(expr \$INC + 1)
