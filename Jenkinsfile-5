@@ -66,6 +66,10 @@ pipeline {
                     [alt_names]"""
                 )
 
+                sh """
+                    echo \$ALT
+                """
+
                 sh "cat ${env.WORKDIR}/${params.CN}.cnf"
             }
         }
