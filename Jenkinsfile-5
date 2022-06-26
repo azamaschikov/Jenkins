@@ -23,7 +23,7 @@ pipeline {
         string(name: "DOMAIN", defaultValue: "example.com")
     }
 
-   stages {
+    stages {
         stage("Clean Workspace") {
             steps {
                 cleanWs()
