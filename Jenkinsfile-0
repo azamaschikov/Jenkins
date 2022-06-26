@@ -16,6 +16,7 @@ pipeline {
             steps {
                 echo "Hello, World"
                 echo "${env.PROJECT_NAME} by ${env.PROJECT_AUTHOR}"
+                echo '${env.PROJECT_NAME} by ${env.PROJECT_AUTHOR}'
             }
         }
     }
