@@ -20,8 +20,8 @@ pipeline {
     }
 
     parameters {
-        string(name: "C",   defaultValue: "Russian Federation", description: "Country: ")
-        string(name: "ST",  defaultValue: "Moscow", description: "State: ")
+        string(name: "C",   defaultValue: "RU", description: "Country: ")
+        string(name: "ST",  defaultValue: "RU", description: "State: ")
         string(name: "L",   defaultValue: "Moscow", description: "Locality: ")
         string(name: "O",   defaultValue: "Anybyte Inc", description: "Organization Name: ")
         string(name: "OU",  defaultValue: "IT", description: "Organizational Unit: ")
