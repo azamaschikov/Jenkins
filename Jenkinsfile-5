@@ -29,9 +29,7 @@ pipeline {
                 cleanWs()
             }
         }
-    }
 
-    stages {
         stage("Generate Private Key") {
             steps {
                 sh "openssl genrsa -out {env.WORKDIR}/${params.DOMAIN}.key 4096"
