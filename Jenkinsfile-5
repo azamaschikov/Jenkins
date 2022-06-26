@@ -32,7 +32,7 @@ pipeline {
 
         stage("Generate Private Key") {
             steps {
-                sh "openssl genrsa -out {env.WORKDIR}/${params.DOMAIN}.key 4096"
+                sh "openssl genrsa -out ${env.WORKDIR}/${params.DOMAIN}.key 4096"
                 sh "ls -l ."
                 sh "cat {params.DOMAIN}.key"
             }
