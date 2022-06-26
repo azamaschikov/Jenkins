@@ -63,7 +63,8 @@ pipeline {
                     extendedKeyUsage = serverAuth
                     subjectAltName = @alt_names
 
-                    [alt_names]"""
+                    [alt_names]
+                    """
                 )
 
                 sh """
