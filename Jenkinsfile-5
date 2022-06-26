@@ -38,13 +38,13 @@ pipeline {
 
         stage("Generate Private Key") {
             steps {
-                sh "openssl genrsa -out ${params.CN}.key 4096"
+                sh "openssl genrsa -out ${env.WORKDIR}/${params.CN}.key 4096"
             }
         }
 
         stage("Generate Configuration File") {
             steps {
-                writeFile(file: "${params.CN}.cnf", encoding: "UTF-8", text: """
+                writeFile(file: "${env.WORKDIR}/${params.CN}.cnf", encoding: "UTF-8", text: """
                     [req]
                     distinguished_name = req_distinguished_name
                     req_extensions = v3_req
@@ -71,16 +71,18 @@ pipeline {
                     INC=0
                     for I in \$(echo \$ALT | tr " " "\n"); do
                         INC=\$(expr \$INC + 1)
-                        echo "DNS.\$INC = \$I" >> \$CN.cnf
+                        echo "DNS.\$INC = \$I" >> \$WORKDIR/\$CN.cnf
                     done
+
                 """
             }
         }
 
         stage("Generate CSR") {
             steps {
-                sh "openssl req -config {params.CN}.cnf -new -key ${params.CN}.key -out ${params.CN}.csr"
-                sh "cat ${params.CN}.cnf"
+                sh "openssl req -config ${env.WORKDIR}/${params.CN}.cnf -new -key ${env.WORKDIR}/${params.CN}.key -out ${env.WORKDIR}/${params.CN}.csr"
+                sh "ls -l ."
+                sh "cat ${env.WORKDIR}/${params.CN}.cnf"
             }
         }
 
