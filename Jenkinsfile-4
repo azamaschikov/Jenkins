@@ -1,0 +1,34 @@
+pipeline {
+
+    agent any
+
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(
+            logRotator(
+                numToKeepStr:"3",
+                daysToKeepStr: "7",
+                artifactDaysToKeepStr: "7",
+                artifactNumToKeepStr: "3"
+            )
+        )
+        ansiColor("gnome-terminal")
+    }
+
+    environment {
+        PROJECT_NAME = "My Template For Pipelines"
+        PROJECT_AUTHOR = "Aleksandr Zamaschikov"
+    }
+
+    parameters {
+        string(name: "URL", defaultValue: "example.com", description: "What we well curl?")
+    }
+
+    stages {
+        stage("Get Page") {
+            steps {
+                httpRequest ignoreSslErrors: true, url: "${params.URL}", wrapAsMultipart: false
+            }
+        }
+    }
+}
