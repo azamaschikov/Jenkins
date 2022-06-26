@@ -80,13 +80,13 @@ pipeline {
 
         stage("Generate CSR") {
             steps {
-                sh "openssl req -config ${env.WORKDIR}/${params.CN}.cnf -key ${env.WORKDIR}/${params.CN}.key -out ${env.WORKDIR}/${params.CN}.csr"
+                sh "openssl req -config ${env.WORKDIR}/${params.CN}.cnf -new -key ${env.WORKDIR}/${params.CN}.key -out ${env.WORKDIR}/${params.CN}.csr"
             }
         }
 
         stage("Create Artifact") {
             steps {
-                archiveArtifacts artifacts: "*", followSymlinks: false
+                archiveArtifacts(artifacts: "*", followSymlinks: false)
             }
         }
     }
