@@ -71,8 +71,7 @@ pipeline {
                     for I in \$(echo \$ALT | tr " " "\n")
                         do
                             INC=\$(expr \$INC + 1)
-                            echo \$I
-                            echo \$INC
+                            echo "DNS.\$INC = " >> ${env.WORKDIR}/${params.CN}.cnf
                         done
                 """
 
