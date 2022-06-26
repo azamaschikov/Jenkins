@@ -66,16 +66,16 @@ pipeline {
                     """
                 )
 
-                sh """
+                sh '''
                     INC=0
-                    for I in \$(echo \$ALT | tr " " "\n")
+                    for I in $(echo $ALT | tr " " "\n")
                     do
-                        INC=\$(expr \$INC + 1)
-                        echo "DNS.\$INC = \$I" >> \$WORKDIR/\$CN.cnf
+                        INC=$(expr $INC + 1)
+                        echo "DNS.$INC = $I" >> $WORKDIR/$CN.cnf
                     done
 
-                    sed -i 's/^[ ]*//' \$WORKDIR/\$CN.cnf
-                """
+                    sed -i "s/^[ ]*//" $WORKDIR/$CN.cnf
+                '''
             }
         }
 
