@@ -74,9 +74,7 @@ pipeline {
                         echo "DNS.$INC = $I" >> $WORKDIR/$CN.cnf
                     done
 
-                    cat $WORKDIR/$CN.cnf
                     sed -i 's/^[ ]*//' $WORKDIR/$CN.cnf
-                    cat $WORKDIR/$CN.cnf
                 '''
             }
         }
