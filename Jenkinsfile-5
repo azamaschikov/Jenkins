@@ -81,7 +81,7 @@ pipeline {
 
         stage("Generate CSR") {
             steps {
-                sh "openssl req -config ${env.WORKDIR}/${params.CN}.cnf -new -key ${env.WORKDIR}/${params.CN}.key -out ${env.WORKDIR}/${params.CN}.csr"
+                sh "openssl req -config ${params.CN}.cnf -new -key ${params.CN}.key -out ${params.CN}.csr"
             }
         }
 
