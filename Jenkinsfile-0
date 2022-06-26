@@ -12,6 +12,7 @@ pipeline {
                 artifactNumToKeepStr: "3"
             )
         )
+        ansiColor("xterm")
     }
 
     environment {
