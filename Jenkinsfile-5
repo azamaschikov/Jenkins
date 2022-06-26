@@ -20,7 +20,7 @@ pipeline {
     }
 
     parameters {
-        string(name: "DOMAIN", defaultValue: "example.com")
+        string(name: "CN", defaultValue: "example.com")
     }
 
     stages {
@@ -32,9 +32,31 @@ pipeline {
 
         stage("Generate Private Key") {
             steps {
-                sh "openssl genrsa -out ${env.WORKDIR}/${params.DOMAIN}.key 4096"
-                sh "ls -l ."
-                sh "cat ${params.DOMAIN}.key"
+                sh "openssl genrsa -out ${env.WORKDIR}/${params.CN}.key 4096"
+            }
+        }
+
+        stage("Generate Configuration File") {
+            steps {
+                writeFile file: "${env.WORKDIR}/${params.CN}.cnf", text: """[req]
+                    distinguished_name = req_distinguished_name
+                    req_extensions = v3_req
+                    prompt = no
+
+                    [req_distinguished_name]
+                    C = RU
+                    ST = ru
+                    L = Moscow
+                    O = My Organization
+                    OU = My Unit
+                    CN = ${params.CN}
+
+                    [v3_req]
+                    keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+                    extendedKeyUsage = serverAuth
+                    subjectAltName = @alt_names
+
+                    [alt_names]"""
             }
         }
     }
