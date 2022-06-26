@@ -69,8 +69,11 @@ pipeline {
                 sh """
                     INC=1
                     for I in \$(echo \$ALT | tr " " "\n")
-                        do echo \$I
-                    done
+                        do
+                            ((INC++))
+                            echo \$I
+                            echo \$INC
+                        done
                 """
 
                 sh "cat ${env.WORKDIR}/${params.CN}.cnf"
