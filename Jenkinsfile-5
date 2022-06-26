@@ -20,13 +20,13 @@ pipeline {
     }
 
     parameters {
-        string(name: "C",   defaultValue: "", description: "Country")
-        string(name: "ST",  defaultValue: "", description: "State")
-        string(name: "L",   defaultValue: "", description: "Locality")
-        string(name: "O",   defaultValue: "", description: "Organization Name")
-        string(name: "OU",  defaultValue: "", description: "Organizational Unit")
-        string(name: "CN",  defaultValue: "", description: "Common Name")
-        string(name: "ALT", defaultValue: "", description: "Alternative Names (across spaces)")
+        string(name: "C",   defaultValue: "", description: "Country: ")
+        string(name: "ST",  defaultValue: "", description: "State: ")
+        string(name: "L",   defaultValue: "", description: "Locality: ")
+        string(name: "O",   defaultValue: "", description: "Organization Name: ")
+        string(name: "OU",  defaultValue: "", description: "Organizational Unit: ")
+        string(name: "CN",  defaultValue: "", description: "Common Name: ")
+        string(name: "ALT", defaultValue: "", description: "Alternative Names (across spaces): ")
     }
 
     stages {
