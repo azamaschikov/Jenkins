@@ -1,0 +1,43 @@
+pipeline {
+
+    agent any
+
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(
+            logRotator(
+                numToKeepStr:"3",
+                daysToKeepStr: "7",
+                artifactDaysToKeepStr: "7",
+                artifactNumToKeepStr: "3"
+            )
+        )
+        ansiColor("gnome-terminal")
+    }
+
+    environment {
+        WORKDIR = pwd()
+    }
+
+    parameters {
+        string(name: "DOMAIN", defaultValue: "example.com")
+    }
+
+   stages {
+        stage("Clean Workspace") {
+            steps {
+                cleanWs()
+            }
+        }
+    }
+
+    stages {
+        stage("Generate Private Key") {
+            steps {
+                sh "openssl genrsa -out {env.WORKDIR}/${params.DOMAIN}.key 4096"
+                sh "ls -l ."
+                sh "cat {params.DOMAIN}.key"
+            }
+        }
+    }
+}
