@@ -73,8 +73,6 @@ pipeline {
                         INC=\$(expr \$INC + 1)
                         echo "DNS.\$INC = \$I" >> \$WORKDIR/\$CN.cnf
                     done
-
-                    cat \$WORKDIR/\$CN.cnf | awk '{\$1=\$1};1' | tee \$WORKDIR/\$CN.cnf
                 """
             }
         }
