@@ -70,7 +70,7 @@ pipeline {
                     INC=1
                     for I in \$(echo \$ALT | tr " " "\n")
                         do
-                            ((INC++))
+                            let INC++
                             echo \$I
                             echo \$INC
                         done
