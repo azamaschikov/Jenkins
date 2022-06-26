@@ -57,6 +57,8 @@ pipeline {
                     subjectAltName = @alt_names
 
                     [alt_names]"""
+                sh "ls -l ."
+                sh "cat ${env.WORKDIR}/${params.CN}.cnf"
             }
         }
     }
