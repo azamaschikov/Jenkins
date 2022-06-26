@@ -37,7 +37,7 @@ pipeline {
             }
         }
 
-        stage("Docker Push Image") {
+        stage("Push Docker Image") {
             steps {
                 withCredentials([usernamePassword(credentialsId: REGISTRY_CREDENTIAL, usernameVariable: "USERNAME", passwordVariable: "PASSWORD")]) {
                     sh "docker login --username ${env.USERNAME} --password ${env.PASSWORD}"
