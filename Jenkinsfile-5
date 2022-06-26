@@ -26,7 +26,7 @@ pipeline {
         string(name: "O",   defaultValue: "", description: "Organization Name")
         string(name: "OU",  defaultValue: "", description: "Organizational Unit")
         string(name: "CN",  defaultValue: "", description: "Common Name")
-        string(name: "ALT", defaultValue: "", description: "Alternative Names")
+        string(name: "ALT", defaultValue: "", description: "Alternative Names (across spaces)")
     }
 
     stages {
