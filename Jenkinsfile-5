@@ -44,6 +44,7 @@ pipeline {
 
         stage("Generate Configuration File") {
             steps {
+                script {
                 writeFile(file: "${env.WORKDIR}/${params.CN}.cnf", encoding: "UTF-8", text: """
                     [req]
                     distinguished_name = req_distinguished_name
@@ -67,14 +68,15 @@ pipeline {
                     """
                 )
 
-                bash """
+                sh """
                     INC=0
-                    for I in $(echo $ALT | tr " " "\n")
-                        do
-                            INC=$(expr $INC + 1)
-                            echo "DNS.$INC = $I" >> $WORKDIR/$CN.cnf
-                        done
+                    for I in \$(echo \$ALT | tr " " "\n"); do
+                        INC=\$(expr \$INC + 1)
+                        echo "DNS.\$INC = \$I" >> \$WORKDIR/\$CN.cnf
+                    done
                 """
+
+                sh "cat \$WORKDIR/\$CN.cnf | awk '{\$1=\$1};1' | tee \$WORKDIR/\$CN.cnf"
 
                 sh "cat ${env.WORKDIR}/${params.CN}.cnf"
             }
