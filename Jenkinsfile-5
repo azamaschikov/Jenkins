@@ -20,7 +20,12 @@ pipeline {
     }
 
     parameters {
-        string(name: "CN", defaultValue: "example.com")
+        string(name: "C",  defaultValue: "", description: "Country")
+        string(name: "ST", defaultValue: "", description: "State")
+        string(name: "L",  defaultValue: "", description: "Locality")
+        string(name: "O",  defaultValue: "", description: "Organization Name")
+        string(name: "OU", defaultValue: "", description: "Organizational Unit")
+        string(name: "CN", defaultValue: "", description: "Common Name")
     }
 
     stages {
@@ -44,11 +49,11 @@ pipeline {
                     prompt = no
 
                     [req_distinguished_name]
-                    C = RU
-                    ST = ru
-                    L = Moscow
-                    O = My Organization
-                    OU = My Unit
+                    C = ${params.C}
+                    ST = ${params.ST}
+                    L = ${params.L}
+                    O = ${params.O}
+                    OU = ${params.OU}
                     CN = ${params.CN}
 
                     [v3_req]
