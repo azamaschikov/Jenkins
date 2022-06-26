@@ -21,7 +21,7 @@ pipeline {
     }
 
     parameters {
-        string(name: "URL", defaultValue: "example.com", description: "What we well curl?")
+        string(name: "URL", defaultValue: "http://example.com")
     }
 
     stages {
