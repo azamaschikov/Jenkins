@@ -23,7 +23,7 @@ pipeline {
         string(name: "C",   defaultValue: "RU", description: "Country: ")
         string(name: "ST",  defaultValue: "RU", description: "State: ")
         string(name: "L",   defaultValue: "Moscow", description: "Locality: ")
-        string(name: "O",   defaultValue: "Anybyte Inc", description: "Organization Name: ")
+        string(name: "O",   defaultValue: "Anybyte", description: "Organization Name: ")
         string(name: "OU",  defaultValue: "IT", description: "Organizational Unit: ")
         string(name: "CN",  defaultValue: "", description: "Common Name: ")
         string(name: "ALT", defaultValue: "", description: "Alternative Names (across spaces): ")
