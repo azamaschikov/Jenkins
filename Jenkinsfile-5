@@ -20,13 +20,13 @@ pipeline {
     }
 
     parameters {
-        string(name: "C",   defaultValue: "RU", description: "Country: ")
-        string(name: "ST",  defaultValue: "RU", description: "State: ")
-        string(name: "L",   defaultValue: "Moscow", description: "Locality: ")
-        string(name: "O",   defaultValue: "Anybyte", description: "Organization Name: ")
-        string(name: "OU",  defaultValue: "IT", description: "Organizational Unit: ")
-        string(name: "CN",  defaultValue: "", description: "Common Name: ")
-        string(name: "ALT", defaultValue: "", description: "Alternative Names (across spaces): ")
+        string(name: "C",   defaultValue: "RU",             description: "Country: ")
+        string(name: "ST",  defaultValue: "RU",             description: "State: ")
+        string(name: "L",   defaultValue: "Moscow",         description: "Locality: ")
+        string(name: "O",   defaultValue: "Anybyte",        description: "Organization Name: ")
+        string(name: "OU",  defaultValue: "IT",             description: "Organizational Unit: ")
+        string(name: "CN",  defaultValue: "anybyte.ru",     description: "Common Name: ")
+        string(name: "ALT", defaultValue: "www.anybyte.ru", description: "Alternative Names (across spaces): ")
     }
 
     stages {
