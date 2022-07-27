@@ -1,0 +1,97 @@
+pipeline {
+
+    agent any
+
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder(
+            logRotator(
+                numToKeepStr:"3",
+                daysToKeepStr: "7",
+                artifactDaysToKeepStr: "7",
+                artifactNumToKeepStr: "3"
+            )
+        )
+        ansiColor("gnome-terminal")
+    }
+
+    environment {
+        WORKDIR = pwd()
+    }
+
+    parameters {
+        string(name: "C",   defaultValue: "RU",             description: "Country: ")
+        string(name: "ST",  defaultValue: "RU",             description: "State: ")
+        string(name: "L",   defaultValue: "Moscow",         description: "Locality: ")
+        string(name: "O",   defaultValue: "Anybyte",        description: "Organization Name: ")
+        string(name: "OU",  defaultValue: "IT",             description: "Organizational Unit: ")
+        string(name: "CN",  defaultValue: "anybyte.ru",     description: "Common Name: ")
+        string(name: "ALT", defaultValue: "www.anybyte.ru", description: "Alternative Names (across spaces): ")
+    }
+
+    stages {
+        stage("Clean Workspace") {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage("Generate Private Key") {
+            steps {
+                sh "openssl genrsa -out ${env.WORKDIR}/${params.CN}.key 4096"
+            }
+        }
+
+        stage("Generate Configuration File") {
+            steps {
+                writeFile(file: "${env.WORKDIR}/${params.CN}.cnf", encoding: "UTF-8", text: """[req]
+                    distinguished_name = req_distinguished_name
+                    req_extensions = v3_req
+                    prompt = no
+
+                    [req_distinguished_name]
+                    C = ${params.C}
+                    ST = ${params.ST}
+                    L = ${params.L}
+                    O = ${params.O}
+                    OU = ${params.OU}
+                    CN = ${params.CN}
+
+                    [v3_req]
+                    keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+                    extendedKeyUsage = serverAuth
+                    subjectAltName = @alt_names
+
+                    [alt_names]
+                    """
+                )
+
+                sh '''
+                    INC=0
+                    for I in $(echo $ALT | tr " " "\n")
+                    do
+                        INC=$(expr $INC + 1)
+                        echo "DNS.$INC = $I" >> $WORKDIR/$CN.cnf
+                    done
+
+                    sed -i "s/^[ ]*//" $WORKDIR/$CN.cnf
+                '''
+            }
+        }
+
+        stage("Generate CSR") {
+            steps {
+                sh "openssl req -new " +
+                   "-config ${env.WORKDIR}/${params.CN}.cnf " +
+                   "-key ${env.WORKDIR}/${params.CN}.key " +
+                   "-out ${env.WORKDIR}/${params.CN}.csr"
+            }
+        }
+
+        stage("Create Artifact") {
+            steps {
+                archiveArtifacts(artifacts: "*", followSymlinks: false)
+            }
+        }
+    }
+}
