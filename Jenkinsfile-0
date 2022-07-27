@@ -12,7 +12,7 @@ pipeline {
                 artifactNumToKeepStr: "3"
             )
         )
-        ansiColor("xterm")
+        ansiColor("gnome-terminal")
     }
 
     environment {
