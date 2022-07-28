@@ -31,11 +31,11 @@ pipeline {
 
     post {
         success {
-            echo "Step was success"
+            echo "Success build"
         }
 
         failure {
-            echo "Step was failure"
+            echo "Failure build"
         }
 
         always {
@@ -43,4 +43,3 @@ pipeline {
         }
     }
 }
-
