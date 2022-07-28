@@ -15,6 +15,20 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
+    triggers {
+        /* Запускать конвейер: по расписанию, по опросу SCM
+        cron("H/5 * * * *")
+        */
+        pollSCM("H/5 * * * *")
+
+        /* Запускать конвейер при успешной сборке другой задачи
+        upstream(
+                 upstreamProjects: "MyJob",
+                 threshold: hudson.model.Result.SUCCESS
+        )
+        */
+    }
+
     environment {
         PROJECT_NAME   = "My Template For Pipelines"
         PROJECT_AUTHOR = "Aleksandr Zamaschikov"
