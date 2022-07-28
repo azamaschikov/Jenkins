@@ -30,8 +30,17 @@ pipeline {
     }
 
     post {
+        success {
+            echo "Step was success"
+        }
+
+        failure {
+            echo "Step was failure"
+        }
+
         always {
             cleanWs()
         }
     }
 }
+
