@@ -12,7 +12,9 @@ pipeline {
         REGISTRY_CREDENTIAL = ""
     }
 
+    /*
     tools {}
+    */
 
     options {
         disableConcurrentBuilds()
@@ -27,9 +29,13 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
+    /*
     triggers {}
+    */
 
+    /*
     parameters {}
+    */
 
     stages {
 

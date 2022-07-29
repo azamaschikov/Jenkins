@@ -21,7 +21,9 @@ pipeline {
         PROJECT_AUTHOR = "Aleksandr Zamaschikov"
     }
 
+    /*
     tools {}
+    */
 
     options {
         disableConcurrentBuilds()
@@ -36,9 +38,13 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
+    /*
     triggers {}
+    */
 
+    /*
     parameters {}
+    */
 
     stages {
         stage("Get Page") {

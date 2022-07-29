@@ -7,7 +7,9 @@ pipeline {
         PROJECT_AUTHOR = "Aleksandr Zamaschikov"
     }
 
+    /*
     tools {}
+    */
 
     options {
         disableConcurrentBuilds()
@@ -22,7 +24,9 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
+    /*
     triggers {}
+    */
 
     parameters {
         string(name: "URL", defaultValue: "http://example.com")

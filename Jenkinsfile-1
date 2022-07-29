@@ -7,7 +7,9 @@ pipeline {
         PROJECT_AUTHOR = "Aleksandr Zamaschikov"
     }
 
+    /*
     tools {}
+    */
 
     options {
         disableConcurrentBuilds()
@@ -39,7 +41,9 @@ pipeline {
         */
     }
 
+    /*
     parameters {}
+    */
 
     stages {
         stage("Building step") {
