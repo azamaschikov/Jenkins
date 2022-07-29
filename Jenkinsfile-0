@@ -2,6 +2,13 @@ pipeline {
 
     agent any
 
+    environment {
+        PROJECT_NAME = "My Template For Pipelines"
+        PROJECT_AUTHOR = "Aleksandr Zamaschikov"
+    }
+
+    tools {}
+
     options {
         disableConcurrentBuilds()
         buildDiscarder(
@@ -15,10 +22,9 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
-    environment {
-        PROJECT_NAME = "My Template For Pipelines"
-        PROJECT_AUTHOR = "Aleksandr Zamaschikov"
-    }
+    triggers {}
+
+    parameters {}
 
     stages {
         stage("Greetings") {

@@ -2,6 +2,12 @@ pipeline {
 
     agent any
 
+    environment {
+        WORKDIR = pwd()
+    }
+
+    tools {}
+
     options {
         disableConcurrentBuilds()
         buildDiscarder(
@@ -15,9 +21,7 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
-    environment {
-        WORKDIR = pwd()
-    }
+    triggers {}
 
     parameters {
         string(name: "C",   defaultValue: "RU",             description: "Country: ")

@@ -2,6 +2,18 @@ pipeline {
 
     agent any
 
+    environment {
+        IMAGE_TAG           = "v0.0.0"
+        IMAGE_NAME          = "my-awesome-application:${env.IMAGE_TAG}"
+
+        REPOSITORY_BRANCH   = ""
+        REPOSITORY_ADDRESS  = ""
+
+        REGISTRY_CREDENTIAL = ""
+    }
+
+    tools {}
+
     options {
         disableConcurrentBuilds()
         buildDiscarder(
@@ -15,15 +27,9 @@ pipeline {
         ansiColor("gnome-terminal")
     }
 
-    environment {
-        IMAGE_TAG           = "v0.0.0"
-        IMAGE_NAME          = "my-awesome-application:${env.IMAGE_TAG}"
+    triggers {}
 
-        REPOSITORY_BRANCH   = ""
-        REPOSITORY_ADDRESS  = ""
-
-        REGISTRY_CREDENTIAL = ""
-    }
+    parameters {}
 
     stages {
 
