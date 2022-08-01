@@ -2,13 +2,14 @@ def statusPage(target) {
     response = httpRequest(
         ignoreSslErrors: true,
         wrapAsMultipart: false,
+        validResponseCodes: "100:500"
         url: target
     )
 
     if (response.status == 200) {
-        echo "ok"
+        return true
     } else {
-        echo "fail"
+        return false
     }
 }
 
